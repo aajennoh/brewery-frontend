@@ -1,11 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Grid, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class Navbar extends React.Component {
   render(){
-    console.log(this.props.currentUser)
-    console.log(this.props)
     return (
 			<Grid.Row>
 				<Grid.Column width={16}>
@@ -19,11 +17,11 @@ class Navbar extends React.Component {
 							?
 
 							<Menu.Menu position="right">
-								{/* <Link className="item" to={`/users/${this.props.currentUser.id}`}>
-									Profile
-								</Link> */}
+								<Link className="item" to={`/users/${this.props.currentUser.id}`}>
+									Favorites
+								</Link>
 								<Menu.Item onClick={this.props.logout}>
-									Log out
+									Log Out
 								</Menu.Item>
 							</Menu.Menu>
 						

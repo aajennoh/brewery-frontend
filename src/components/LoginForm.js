@@ -15,7 +15,8 @@ class LoginForm extends React.Component{
     })
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
     fetch("http://localhost:3000/login", {
 			method: "POST",
 			headers: {
@@ -67,13 +68,7 @@ class LoginForm extends React.Component{
 
         </Form>
       )
-
   }
-
-
 }
-
-
-
 
 export default LoginForm
