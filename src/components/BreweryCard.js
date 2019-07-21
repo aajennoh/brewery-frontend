@@ -8,16 +8,6 @@ class BreweryCard extends React.Component {
   }
 
 
-//   const [liked, setLiked] = useState(() => {
-//     if (currentUser === null) 
-//         return false
-//     if (currentUser.breweries.find(brewery => brewery.id === id)) 
-//         return true
-    
-//     return false
-// })
-
-
   handleFavorited = (breweryID) => {
     if (this.props.currentUser && this.props.currentUser.breweries.find(brewery => brewery.id === breweryID)) {
       return true
