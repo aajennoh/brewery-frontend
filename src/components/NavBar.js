@@ -8,7 +8,7 @@ class Navbar extends React.Component {
 			<Grid.Row>
 				<Grid.Column width={16}>
 					<Menu>
-						<Link className="item" to="/">
+						<Link className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
 							Home
 						</Link>
 						{
@@ -17,6 +17,9 @@ class Navbar extends React.Component {
 							?
 
 							<Menu.Menu position="right">
+								<Link className="item" to={`/newbrewery`}>
+									New Brewery
+								</Link>
 								<Link className="item" to={`/users/${this.props.currentUser.id}`}>
 									Favorites
 								</Link>

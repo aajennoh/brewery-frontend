@@ -35,7 +35,7 @@ class BreweryContainer extends React.Component {
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
         <Container>
-          <Card.Group itemsPerRow={3}>
+          <Card.Group itemsPerRow={2}>
             {this.props.searchTerm ? this.filterBrewery() : this.renderBrewery()}
           </Card.Group>
         </Container>

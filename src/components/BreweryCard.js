@@ -4,7 +4,9 @@ import { Card, Button, Icon } from 'semantic-ui-react'
 class BreweryCard extends React.Component {
 
   state = {
-    favorited: false
+    favorited: false,
+    likes: this.props.likes,
+    dislikes: this.props.dislikes
   }
 
 
@@ -16,6 +18,27 @@ class BreweryCard extends React.Component {
     }
   }
 
+  handleLikes = () => {
+    // debugger
+    fetch(`http://localhost:3000/brewery/${this.props.id}/likes`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        likes: this.state.likes + 1
+      })
+    })
+  }
+
+  handleDislikes = () => {
+    fetch(`http://localhost:3000/brewery/${this.props.id}/dislikes`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        dislikes: this.state.dislikes + 1
+      })
+    })
+  }
+
   render(){
     
     return(
@@ -23,7 +46,7 @@ class BreweryCard extends React.Component {
         <Card.Content>
           <Card.Header>{this.props.name}</Card.Header>
           <Card.Meta>{this.props.phone}</Card.Meta>
-          <Card.Meta onClick={() => window.open(this.props.website_url)}>{this.props.website_url}
+          <Card.Meta className="website" onClick={() => window.open(this.props.website_url)}>{this.props.website_url}
           </Card.Meta>
           <br></br>
           <Card.Description > {this.props.street}</Card.Description>
@@ -37,13 +60,13 @@ class BreweryCard extends React.Component {
             this.handleFavorited()}}>
               <Icon basic color='red' centered name={!this.handleFavorited(this.props.id) ? 'heart outline' : 'heart'} />
             </Button>
-            <Button >
-              <Icon basic color='green' centered name='thumbs up outline'/>
-              0
+            <Button onClick={() => this.handleLikes()} >
+              <Icon basic color='green' centered name='thumbs up outline' />
+              {this.state.likes}
             </Button>
-            <Button >
-              <Icon basic color='red' centered name='thumbs down outline'/>
-              0
+            <Button onClick={() => this.handleDislikes()} >
+              <Icon basic color='red' centered name='thumbs down outline' />
+              {this.state.dislikes}
             </Button>
           </div>
         </Card.Content>

@@ -23,7 +23,15 @@
   color: #61dafb;
 }
 
-.
+.ui.card .meta.website {
+  color: blue !important;
+  cursor: pointer
+}
+
+.ui.card .meta.website:hover {
+  color: red !important;
+  cursor: pointer
+}
 
 @keyframes App-logo-spin {
   from {

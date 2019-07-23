@@ -13,7 +13,7 @@ class Favorites extends React.Component {
     return(
       <Container>
         <h1>Favorites</h1>
-        <Card.Group itemsPerRow={3}>
+        <Card.Group itemsPerRow={2}>
           {this.props.currentUser.breweries.map(brewery => <BreweryCard 
             key={brewery.id} {...brewery} 
             handleFavoriteClick={this.props.handleFavoriteClick} 

@@ -5,6 +5,7 @@ import BreweryContainer from './containers/BreweryContainer'
 import Favorites from './components/Favorites'
 import LoginForm from './components/LoginForm'
 import SignUpForm from './components/SignUpForm'
+import NewForm from './components/NewForm'
 import { Switch, Route } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 class App extends React.Component {
@@ -12,21 +13,13 @@ class App extends React.Component {
     currentUser: null,
     searchTerm: '',
     breweries: [],
-    loading: true,
-    likes: 0,
-    dislikes: 0
+    loading: true
   };
 
   setCurrentUser = (user) => {
 		this.setState({
 			currentUser: user
 		})
-  }
-
-  handleSearch = (event) => {
-    this.setState({
-      searchTerm: event.target.value.toLowerCase()
-    })
   }
 
   logout = () => {
@@ -47,6 +40,15 @@ class App extends React.Component {
     })
   }
 
+  fetchMostLiked = () => {
+    fetch('http://localhost:3000/breweries/most_liked')
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        breweries: data
+      })
+    })
+  }
 
   handleFavoriteClick = (breweryID) => {
     if (this.state.currentUser !== null) {
@@ -57,31 +59,20 @@ class App extends React.Component {
             currentUser: data,
           })
       })
-      // fetch(`http://localhost:3000/favorite/${this.state.currentUser.id}/brewery/${breweryID}`, {
-      //   method: 'PATCH',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Accept': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     favorites: !this.state.favorites
-      //   })
-      // }
-      //   )
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     this.setState({
-      //       currentUser: data
-      //     })
-      //   })
     } else {
       alert ('You are not logged in')
     }
+  }
 
+  handleSearch = (event) => {
+    this.setState({
+      searchTerm: event.target.value.toLowerCase()
+    })
   }
 
   componentDidMount () {
     this.fetchBreweries();
+    this.fetchMostLiked();
 
     const token = localStorage.getItem('token')
     if (token) {
@@ -104,6 +95,7 @@ class App extends React.Component {
         }
       })
     }
+    
   }
 
     
@@ -122,15 +114,26 @@ class App extends React.Component {
 			<Grid>
         <NavBar 
           currentUser={this.state.currentUser} 
-          logout={this.logout} />
+          logout={this.logout}
+          fetchMostLiked={this.fetchMostLiked}
+          />
 				<Grid.Row centered>
 					<Switch>
             <Route exact path="/users/:id" render={routerProps => <Favorites 
               currentUser={this.state.currentUser} 
               handleFavoriteClick={this.handleFavoriteClick}
               favorites={this.state.favorites}
+              {...routerProps} /> } 
+            />
+
+            <Route exact path='/newbrewery' render={routerProps => <NewForm 
+              currentUser={this.state.currentUser} 
+              breweries={this.state.breweries} 
               {...routerProps} 
-            /> } />
+              searchTerm={this.state.searchTerm} 
+              handleSearch={this.handleSearch} 
+              />} 
+            />            
             
             <Route exact path='/' render={routerProps => <BreweryContainer 
               currentUser={this.state.currentUser} 
@@ -138,9 +141,8 @@ class App extends React.Component {
               {...routerProps} 
               searchTerm={this.state.searchTerm} 
               handleSearch={this.handleSearch} 
-              handleFavoriteClick={this.handleFavoriteClick}
-              />} 
-              />
+              handleFavoriteClick={this.handleFavoriteClick} />} 
+            />
 						
             <Route exact path="/login" render={(routerProps) => {
               return <LoginForm 
