@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Menu } from 'semantic-ui-react'
+import { Grid, Menu, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class Navbar extends React.Component {
@@ -9,7 +9,7 @@ class Navbar extends React.Component {
 				<Grid.Column width={16}>
 					<Menu>
 						<Link className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
-							Home
+							<Icon name="beer" />
 						</Link>
 						{
 							this.props.currentUser 

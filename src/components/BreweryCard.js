@@ -4,7 +4,6 @@ import { Card, Button, Icon } from 'semantic-ui-react'
 class BreweryCard extends React.Component {
 
   state = {
-    favorited: false,
     likes: this.props.likes,
     dislikes: this.props.dislikes
   }
@@ -56,8 +55,7 @@ class BreweryCard extends React.Component {
         <Card.Content extra>
           <div className='ui three buttons'>
             <Button 
-            onClick={() => {this.props.handleFavoriteClick(this.props.id)
-            this.handleFavorited()}}>
+            onClick={() => {this.props.handleFavoriteClick(this.props.id)}}>
               <Icon basic color='red' centered name={!this.handleFavorited(this.props.id) ? 'heart outline' : 'heart'} />
             </Button>
             <Button onClick={() => this.handleLikes()} >

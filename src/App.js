@@ -8,12 +8,14 @@ import SignUpForm from './components/SignUpForm'
 import NewForm from './components/NewForm'
 import { Switch, Route } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
+// import InfiniteScroll from 'react-infinite-scroller';
 class App extends React.Component {
+  
   state = {
     currentUser: null,
     searchTerm: '',
     breweries: [],
-    loading: true
+    loading: false
   };
 
   setCurrentUser = (user) => {
@@ -50,6 +52,7 @@ class App extends React.Component {
     })
   }
 
+
   handleFavoriteClick = (breweryID) => {
     if (this.state.currentUser !== null) {
       fetch(`http://localhost:3000/favorite/${this.state.currentUser.id}/brewery/${breweryID}`)
@@ -67,6 +70,13 @@ class App extends React.Component {
   handleSearch = (event) => {
     this.setState({
       searchTerm: event.target.value.toLowerCase()
+    })
+  }
+
+  renderAdded = (newBrewery) => {
+    this.setState({
+      allBreweries: [...this.state.breweries, newBrewery]
+      // allPokemon: this.state.allPokemon.push(newPoke)
     })
   }
 
@@ -109,58 +119,58 @@ class App extends React.Component {
           src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/source.gif"
         />
       );
+    } else {
+      return (
+        <Grid>
+          <NavBar 
+            currentUser={this.state.currentUser} 
+            logout={this.logout}
+            fetchMostLiked={this.fetchMostLiked}
+            />
+          <Grid.Row centered>
+            <Switch>
+              <Route exact path="/users/:id" render={routerProps => <Favorites 
+                currentUser={this.state.currentUser} 
+                handleFavoriteClick={this.handleFavoriteClick}
+                favorites={this.state.favorites}
+                {...routerProps} /> } 
+              />
+  
+              <Route exact path='/newbrewery' render={routerProps => <NewForm 
+                {...routerProps} 
+                renderAdded={this.renderAdded}
+                />} 
+              />            
+              
+              <Route exact path='/' render={routerProps => 
+              <BreweryContainer 
+                currentUser={this.state.currentUser} 
+                breweries={this.state.breweries} 
+                {...routerProps} 
+                searchTerm={this.state.searchTerm} 
+                handleSearch={this.handleSearch} 
+                handleFavoriteClick={this.handleFavoriteClick} />
+              } />
+              
+              <Route exact path="/login" render={(routerProps) => {
+                return <LoginForm 
+                  setCurrentUser={this.setCurrentUser} 
+                  {...routerProps}/>
+              }} />
+              
+              <Route exact path="/signup" render={(routerProps) => {
+                return <SignUpForm 
+                  setCurrentUser={this.setCurrentUser}
+                  {...routerProps}/>
+              }} />
+  
+            </Switch>
+          </Grid.Row>  
+        </Grid>
+      );
     }
-    return (
-			<Grid>
-        <NavBar 
-          currentUser={this.state.currentUser} 
-          logout={this.logout}
-          fetchMostLiked={this.fetchMostLiked}
-          />
-				<Grid.Row centered>
-					<Switch>
-            <Route exact path="/users/:id" render={routerProps => <Favorites 
-              currentUser={this.state.currentUser} 
-              handleFavoriteClick={this.handleFavoriteClick}
-              favorites={this.state.favorites}
-              {...routerProps} /> } 
-            />
+    }
 
-            <Route exact path='/newbrewery' render={routerProps => <NewForm 
-              currentUser={this.state.currentUser} 
-              breweries={this.state.breweries} 
-              {...routerProps} 
-              searchTerm={this.state.searchTerm} 
-              handleSearch={this.handleSearch} 
-              />} 
-            />            
-            
-            <Route exact path='/' render={routerProps => <BreweryContainer 
-              currentUser={this.state.currentUser} 
-              breweries={this.state.breweries} 
-              {...routerProps} 
-              searchTerm={this.state.searchTerm} 
-              handleSearch={this.handleSearch} 
-              handleFavoriteClick={this.handleFavoriteClick} />} 
-            />
-						
-            <Route exact path="/login" render={(routerProps) => {
-              return <LoginForm 
-                setCurrentUser={this.setCurrentUser} 
-                {...routerProps}/>
-						}} />
-						
-            <Route exact path="/signup" render={(routerProps) => {
-              return <SignUpForm 
-                setCurrentUser={this.setCurrentUser}
-                {...routerProps}/>
-						}} />
-
-					</Switch>
-				</Grid.Row>  
-			</Grid>
-    );
-  }
 
 }
 
