@@ -1,22 +1,31 @@
 import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
-import BreweryContainer from './containers/BreweryContainer'
-import Favorites from './components/Favorites'
-import LoginForm from './components/LoginForm'
-import SignUpForm from './components/SignUpForm'
-import NewForm from './components/NewForm'
-import { Switch, Route } from 'react-router-dom'
-import { Grid } from 'semantic-ui-react'
-// import InfiniteScroll from 'react-infinite-scroller';
+import BreweryContainer from './containers/BreweryContainer';
+import Favorites from './components/Favorites';
+import LoginForm from './components/LoginForm';
+import SignUpForm from './components/SignUpForm';
+import NewForm from './components/NewForm';
+import { Switch, Route } from 'react-router-dom';
+import { Grid, Button, Icon } from 'semantic-ui-react';
+import 'react-svg-map/lib/index.css';
+import { SVGMap, USA } from 'react-svg-map';
+import StatePage from './components/StatePage'
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 class App extends React.Component {
-  
+  // contextRef = createRef()
   state = {
     currentUser: null,
     searchTerm: '',
     breweries: [],
-    loading: false
+    loading: false,
+    page: 1
   };
+
+  scrollToTop = () => {
+    window.scrollTo(0, 0);
+  }
 
   setCurrentUser = (user) => {
 		this.setState({
@@ -32,14 +41,26 @@ class App extends React.Component {
 		this.props.history.push("/login")
   }
 
+
   fetchBreweries = () => {
-    fetch('http://localhost:3000/breweries')
+    fetch (`http://localhost:3000/breweries/get_page/${this.state.page}`)
     .then(response => response.json())
     .then(data => {
-      this.setState({
-        breweries: data
+      console.log(data[0])
+      this.setState((prevState) => {
+        return {
+          breweries: prevState.breweries.concat(data)
+        }
       })
     })
+  }
+
+  fetchMoreBreweries = () => {
+    this.setState((prevState => {
+      return {
+        page: prevState.page + 1
+      }
+    }), this.fetchBreweries)
   }
 
   fetchMostLiked = () => {
@@ -51,7 +72,6 @@ class App extends React.Component {
       })
     })
   }
-
 
   handleFavoriteClick = (breweryID) => {
     if (this.state.currentUser !== null) {
@@ -76,13 +96,16 @@ class App extends React.Component {
   renderAdded = (newBrewery) => {
     this.setState({
       allBreweries: [...this.state.breweries, newBrewery]
-      // allPokemon: this.state.allPokemon.push(newPoke)
     })
+  }
+
+  clickState = (event) => {
+    this.props.history.push(`/state/${event.target.attributes[1].value}`)
   }
 
   componentDidMount () {
     this.fetchBreweries();
-    this.fetchMostLiked();
+    // this.fetchMostLiked();
 
     const token = localStorage.getItem('token')
     if (token) {
@@ -115,18 +138,23 @@ class App extends React.Component {
         <img
           alt="loading..."
           className="loader"
-          centered
+          centered="true"
           src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/source.gif"
         />
       );
     } else {
+      console.log(this.state)
+
       return (
+ 
         <Grid>
           <NavBar 
             currentUser={this.state.currentUser} 
             logout={this.logout}
             fetchMostLiked={this.fetchMostLiked}
             />
+
+
           <Grid.Row centered>
             <Switch>
               <Route exact path="/users/:id" render={routerProps => <Favorites 
@@ -135,23 +163,38 @@ class App extends React.Component {
                 favorites={this.state.favorites}
                 {...routerProps} /> } 
               />
+
+              <Route exact path="/map" render={(routerProps) => <div onClick={this.clickState} currentUser={this.state.currentUser} {...routerProps}><SVGMap map={USA} /></div>} 
+              />
+              
+              <Route path="/state/:state" render={(routerProps) => <StatePage {...routerProps}/>} 
+              />
   
               <Route exact path='/newbrewery' render={routerProps => <NewForm 
                 {...routerProps} 
                 renderAdded={this.renderAdded}
                 />} 
-              />            
+              />   
               
-              <Route exact path='/' render={routerProps => 
-              <BreweryContainer 
-                currentUser={this.state.currentUser} 
-                breweries={this.state.breweries} 
-                {...routerProps} 
-                searchTerm={this.state.searchTerm} 
-                handleSearch={this.handleSearch} 
-                handleFavoriteClick={this.handleFavoriteClick} />
-              } />
-              
+              <Route exact path='/' render={(routerProps) => 
+                <InfiniteScroll 
+                  dataLength={this.state.breweries.length}
+                  next={this.fetchMoreBreweries}
+                  hasMore={true}
+                  loader={<div className="loader">Loading ...</div>}
+                  >                  
+                    <BreweryContainer 
+                    currentUser={this.state.currentUser} 
+                    breweries={this.state.breweries} 
+                    {...routerProps} 
+                    searchTerm={this.state.searchTerm} 
+                    handleSearch={this.handleSearch} 
+                    handleFavoriteClick={this.handleFavoriteClick} />
+                </InfiniteScroll>     
+                
+              }
+              />
+
               <Route exact path="/login" render={(routerProps) => {
                 return <LoginForm 
                   setCurrentUser={this.setCurrentUser} 
@@ -165,9 +208,12 @@ class App extends React.Component {
               }} />
   
             </Switch>
-          </Grid.Row>  
+          </Grid.Row>
         </Grid>
+
       );
+
+      
     }
     }
 

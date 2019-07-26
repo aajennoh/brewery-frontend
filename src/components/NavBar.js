@@ -7,9 +7,12 @@ class Navbar extends React.Component {
     return (
 			<Grid.Row>
 				<Grid.Column width={16}>
-					<Menu>
+					<Menu className="ui stackable blue inverted menu">
 						<Link className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
 							<Icon name="beer" />
+						</Link>
+						<Link className="item" to="/map">
+							<Icon name="map" />
 						</Link>
 						{
 							this.props.currentUser 

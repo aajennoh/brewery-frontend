@@ -2,16 +2,10 @@ import React from 'react'
 import BreweryCard from '../components/BreweryCard'
 import SearchBar from '../components/SearchBar'
 import { Card, Container, Button, Icon } from 'semantic-ui-react';
+import '../BreweryContainer.css';
 
 
 class BreweryContainer extends React.Component {
-
-  backToTopStyle = {
-
-    position:'relative',
-    // left: '50%'
-
-  }
 
   scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -43,18 +37,18 @@ class BreweryContainer extends React.Component {
   render () {
     return (
       <div>
+
+        <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
+
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
-        <Container>
+
+        <Container className="pleasework">
           <Card.Group itemsPerRow={2}>
             {this.props.searchTerm ? this.filterBrewery() : this.renderBrewery()}
           </Card.Group>
-            <br></br>
-            <br></br>
-          <Button onClick={() => this.scrollToTop()} icon style={this.backToTopStyle}>
-            <Icon name='angle double up' />
-          </Button>
         </Container>
+
       </div>
 
 

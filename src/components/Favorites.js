@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Card, Button, Icon } from 'semantic-ui-react'
+import { Container, Card } from 'semantic-ui-react'
 import BreweryCard from '../components/BreweryCard'
 
 

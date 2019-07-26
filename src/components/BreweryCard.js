@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Button, Icon } from 'semantic-ui-react'
+import { Card, Button, Icon, Image } from 'semantic-ui-react'
+import '../BreweryCard.css'
 
 class BreweryCard extends React.Component {
 
@@ -39,9 +40,10 @@ class BreweryCard extends React.Component {
   }
 
   render(){
-    
+    // console.log(this.props)
     return(
       <Card centered>
+        <Image src={this.props.image_url}></Image>
         <Card.Content>
           <Card.Header>{this.props.name}</Card.Header>
           <Card.Meta>{this.props.phone}</Card.Meta>
@@ -56,14 +58,14 @@ class BreweryCard extends React.Component {
           <div className='ui three buttons'>
             <Button 
             onClick={() => {this.props.handleFavoriteClick(this.props.id)}}>
-              <Icon basic color='red' centered name={!this.handleFavorited(this.props.id) ? 'heart outline' : 'heart'} />
+              <Icon color='red' centered='true' name={!this.handleFavorited(this.props.id) ? 'heart outline' : 'heart'} />
             </Button>
             <Button onClick={() => this.handleLikes()} >
-              <Icon basic color='green' centered name='thumbs up outline' />
+              <Icon color='green' centered='true' name='thumbs up outline' />
               {this.state.likes}
             </Button>
             <Button onClick={() => this.handleDislikes()} >
-              <Icon basic color='red' centered name='thumbs down outline' />
+              <Icon color='red' centered='true' name='thumbs down outline' />
               {this.state.dislikes}
             </Button>
           </div>
