@@ -1,64 +1,67 @@
 import React from 'react'
-import { Dimmer, Loader } from 'semantic-ui-react'
 import BreweryCard from "./BreweryCard"
+import { Card, Container } from 'semantic-ui-react';
 
-const token = "-zNSAt8wyTrXDitGNVaiMyAziOLnQ3DVKXardVFp6Bjeog8Rha_oRjbX19vJZait6EviIMvWicunPIVZvVTwF-Xadcvl8rr8zQ3uh9-Ue8LZ9UTKEcFVBh_8KyqvXHYx"
 
-const headers = {
-  "Authorization": "Bearer " + token
-}
 
 class StatePage extends React.Component {
 
   state = {
-    loading: true,
     locations: []
   }
 
   componentDidMount(){
-    fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${this.props.match.params.area}&term=barbecue`, { headers })
-    .then(res => res.json())
-    .then((data) => {
+    fetch(`http://localhost:3000/breweries/get_state/${this.props.match.params.state}`)
+    .then(response => response.json())
+    .then(data => {
       this.setState({
-        loading: false,
-        locations: data.businesses
+        locations: data
       })
     })
   }
 
   renderLocations(){
-    return this.state.locations.map(location => {
-      return <BreweryCard key={location.id} location={location} />
+    return this.state.locations.map(brewery => {
+      return (
+        <Container className="pleasework">
+          <Card.Group itemsPerRow={3}>
+            <BreweryCard 
+            key={brewery.id} 
+            handleFavoriteClick={this.props.handleFavoriteClick} 
+            currentUser={this.props.currentUser} 
+            {...brewery} />
+          </Card.Group>
+        </Container>
+      )
     })
   }
 
-  loadingBay() {
-    if (this.state.loading) {
+  renderStateBrewery = () => {
+    if (this.state.locations.length !== 0) {
       return (
-        <Dimmer active>
-          <Loader />
-        </Dimmer>
-      )
-    } else if(this.state.locations.length === 0) {
-      return <div> NO RESULTS FOUND </div>
-    } else {
-     return (
-      <div>
-        <h1>{this.props.match.params.area}</h1>
-        <div className="card-container">
-          {this.renderLocations()}
+        <div>
+        <h1>{this.props.match.params.state}</h1>
+          <div className="card-container">
+            {this.renderLocations()}
+          </div>
         </div>
-      </div>
-    )
+      )
+    }else {
+      return <div> NO RESULTS FOUND </div>
     }
   }
+  
+
 
   render(){
-    console.log("ROUTER PROPS", this.props)
+    // console.log(this.props)
+    // console.log(this.state)
+    // console.log("ROUTER PROPS", this.props)
     return (
       <div>
-        {this.loadingBay()}
-      </div>)
+        {this.renderStateBrewery()}
+      </div>
+      )
   }
 }
 

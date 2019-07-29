@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Button, Icon, Image } from 'semantic-ui-react'
-import '../BreweryCard.css'
+import '../css/BreweryCard.css'
 
 class BreweryCard extends React.Component {
 
@@ -42,7 +42,7 @@ class BreweryCard extends React.Component {
   render(){
     // console.log(this.props)
     return(
-      <Card centered>
+      <Card classname="card"centered >
         <Image src={this.props.image_url}></Image>
         <Card.Content>
           <Card.Header>{this.props.name}</Card.Header>

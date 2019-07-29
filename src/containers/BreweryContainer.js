@@ -1,15 +1,22 @@
 import React from 'react'
 import BreweryCard from '../components/BreweryCard'
 import SearchBar from '../components/SearchBar'
-import { Card, Container, Button, Icon } from 'semantic-ui-react';
-import '../BreweryContainer.css';
-
+import { Card, Container, Icon } from 'semantic-ui-react';
+import '../css/BreweryContainer.css'
 
 class BreweryContainer extends React.Component {
 
   scrollToTop = () => {
     window.scrollTo(0, 0);
   }
+
+  // renderBackToTop = () => {
+  //   if(this.state.page >= 2) {
+  //     return (
+  //       <ScrollToTop/>
+  //     )
+  //   }
+  // }
 
   renderBrewery = () => {
     return this.props.breweries.map(brewery => <BreweryCard 
@@ -37,21 +44,20 @@ class BreweryContainer extends React.Component {
   render () {
     return (
       <div>
+        {/* <img className="image-header" src="https://www.austinchronicle.com/binary/58fd/beer-ja.jpg" alt="splash"/> */}
 
         <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
 
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
-
+        <br></br>
         <Container className="pleasework">
-          <Card.Group itemsPerRow={2}>
+          <Card.Group itemsPerRow={4}>
             {this.props.searchTerm ? this.filterBrewery() : this.renderBrewery()}
           </Card.Group>
         </Container>
 
       </div>
-
-
     )
   }
 

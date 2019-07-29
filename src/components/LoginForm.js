@@ -31,7 +31,7 @@ class LoginForm extends React.Component{
 				alert(response.errors)
 			} else {
 				// response is the user object
-				console.log(response)
+				// console.log(response)
 				localStorage.setItem("token", response.token)
 				this.props.setCurrentUser(response.user)
 				this.props.history.push(`/users/${response.user.id}`)
@@ -41,8 +41,9 @@ class LoginForm extends React.Component{
 
   render(){
     return(
-        <Form onSubmit={this.handleSubmit}>
-
+      <div>
+        <h1>Login Form</h1>
+        <Form className="form" onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Email</label>
             <input
@@ -67,6 +68,8 @@ class LoginForm extends React.Component{
           <Button type='submit'>Submit</Button>
 
         </Form>
+      </div>
+
       )
   }
 }

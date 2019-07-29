@@ -46,53 +46,55 @@ class SignupForm extends React.Component {
 
 	render(){
 		return (
-			<Form onSubmit={this.handleSubmit}>
+			<div>
+					<h1>Signup Form</h1>
+					<Form className="form" onSubmit={this.handleSubmit}>
+						<Form.Field>
+							<label>Name</label>
+							<input 
+								onChange={this.handleChange} 
+								name="name" 
+								value={this.state.name} 
+								placeholder='Name' 
+							/>
+						</Form.Field>
 
-		    <Form.Field>
-		      <label>Name</label>
-          <input 
-            onChange={this.handleChange} 
-            name="name" 
-            value={this.state.name} 
-            placeholder='name' 
-          />
-		    </Form.Field>
+						<Form.Field>
+							<label>Email</label>
+							<input 
+								onChange={this.handleChange} 
+								name="email" 
+								value={this.state.email} 
+								placeholder='Email' 
+							/>
+						</Form.Field>
 
-		    <Form.Field>
-		      <label>Email</label>
-          <input 
-            onChange={this.handleChange} 
-            name="email" 
-            value={this.state.email} 
-            placeholder='Email' 
-          />
-		    </Form.Field>
+						<Form.Field>
+							<label>Password</label>
+							<input 
+								onChange={this.handleChange} 
+								type="password" 
+								name="password" 
+								value={this.state.password} 
+								placeholder='Password' 
+							/>
+						</Form.Field>
 
-		    <Form.Field>
-		      <label>Password</label>
-          <input 
-            onChange={this.handleChange} 
-            type="password" 
-            name="password" 
-            value={this.state.password} 
-            placeholder='Password' 
-          />
-		    </Form.Field>
+						<Form.Field>
+							<label>Password Confirmation</label>
+							<input 
+								onChange={this.handleChange}
+								type="password" 
+								name="passwordConfirmation" 
+								value={this.state.passwordConfirmation} 
+								placeholder='Password Confirmation' 
+							/>
+						</Form.Field>
 
-		    <Form.Field>
-		      <label>Password Confirmation</label>
-          <input 
-            onChange={this.handleChange}
-            type="password" 
-            name="passwordConfirmation" 
-            value={this.state.passwordConfirmation} 
-            placeholder='Password Confirmation' 
-          />
-		    </Form.Field>
+						<Button type='submit'>Submit</Button>
 
-		    <Button type='submit'>Submit</Button>
-
-		  </Form>
+					</Form>
+			</div>
 		)
 	}
 }

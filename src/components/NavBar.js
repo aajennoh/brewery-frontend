@@ -3,15 +3,16 @@ import { Grid, Menu, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class Navbar extends React.Component {
+
   render(){
     return (
-			<Grid.Row>
+			<Grid.Row >
 				<Grid.Column width={16}>
-					<Menu className="ui stackable blue inverted menu">
+					<Menu className="ui stackable blue inverted menu" size="huge">
 						<Link className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
 							<Icon name="beer" />
 						</Link>
-						<Link className="item" to="/map">
+						<Link className="item" to="/map" >
 							<Icon name="map" />
 						</Link>
 						{
@@ -21,13 +22,13 @@ class Navbar extends React.Component {
 
 							<Menu.Menu position="right">
 								<Link className="item" to={`/newbrewery`}>
-									New Brewery
+									<Icon name="wpforms"/>
 								</Link>
 								<Link className="item" to={`/users/${this.props.currentUser.id}`}>
-									Favorites
+									<Icon name="heart"/>
 								</Link>
 								<Menu.Item onClick={this.props.logout}>
-									Log Out
+									<Icon name="log out"/>
 								</Menu.Item>
 							</Menu.Menu>
 						
@@ -35,10 +36,10 @@ class Navbar extends React.Component {
 
 							<Menu.Menu position="right">
 								<Link className="item" to="/login">
-									Login
+									<Icon name="sign-in"/>
 								</Link>
 								<Link className="item" to="/signup">
-									Sign Up
+									<Icon name="signup"/>
 								</Link>
 							</Menu.Menu>
 							

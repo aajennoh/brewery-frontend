@@ -12,6 +12,7 @@ import 'react-svg-map/lib/index.css';
 import { SVGMap, USA } from 'react-svg-map';
 import StatePage from './components/StatePage'
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 class App extends React.Component {
   // contextRef = createRef()
@@ -23,9 +24,6 @@ class App extends React.Component {
     page: 1
   };
 
-  scrollToTop = () => {
-    window.scrollTo(0, 0);
-  }
 
   setCurrentUser = (user) => {
 		this.setState({
@@ -46,7 +44,7 @@ class App extends React.Component {
     fetch (`http://localhost:3000/breweries/get_page/${this.state.page}`)
     .then(response => response.json())
     .then(data => {
-      console.log(data[0])
+      // console.log(data[0])
       this.setState((prevState) => {
         return {
           breweries: prevState.breweries.concat(data)
@@ -62,6 +60,8 @@ class App extends React.Component {
       }
     }), this.fetchBreweries)
   }
+
+
 
   fetchMostLiked = () => {
     fetch('http://localhost:3000/breweries/most_liked')
@@ -135,15 +135,12 @@ class App extends React.Component {
   render(){
     if (this.state.loading) {
       return (
-        <img
-          alt="loading..."
-          className="loader"
-          centered="true"
-          src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/source.gif"
-        />
+        <Dimmer active>
+          <Loader />
+        </Dimmer>
       );
     } else {
-      console.log(this.state)
+      // console.log(this.state)
 
       return (
  
@@ -164,11 +161,20 @@ class App extends React.Component {
                 {...routerProps} /> } 
               />
 
-              <Route exact path="/map" render={(routerProps) => <div onClick={this.clickState} currentUser={this.state.currentUser} {...routerProps}><SVGMap map={USA} /></div>} 
+              <Route 
+                path="/map" 
+                render={(routerProps) => <div onClick={this.clickState}><SVGMap map={USA} /></div>} 
               />
               
-              <Route path="/state/:state" render={(routerProps) => <StatePage {...routerProps}/>} 
-              />
+              <Route path="/state/:state" render={(routerProps) => 
+                <StatePage 
+                  {...routerProps} 
+                  currentUser={this.state.currentUser} 
+                  page={this.state.page} 
+                  breweries={this.state.breweries} 
+                  handleFavoriteClick={this.props.handleFavoriteClick} 
+                />
+              } />
   
               <Route exact path='/newbrewery' render={routerProps => <NewForm 
                 {...routerProps} 
@@ -189,7 +195,8 @@ class App extends React.Component {
                     {...routerProps} 
                     searchTerm={this.state.searchTerm} 
                     handleSearch={this.handleSearch} 
-                    handleFavoriteClick={this.handleFavoriteClick} />
+                    handleFavoriteClick={this.handleFavoriteClick}
+                    page={this.state.page} />
                 </InfiniteScroll>     
                 
               }

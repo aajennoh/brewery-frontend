@@ -2,10 +2,7 @@ import React from 'react'
 import { Container, Card } from 'semantic-ui-react'
 import BreweryCard from '../components/BreweryCard'
 
-
 class Favorites extends React.Component {
-
-
 
 
   render(){

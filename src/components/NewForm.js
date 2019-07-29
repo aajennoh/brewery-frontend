@@ -41,11 +41,12 @@ class NewForm extends React.Component {
 
   render(){
     return(
-      <Form onSubmit={this.handleNewFormSubmit}>
+      <div>
         <h1>New Brewery?</h1>
         <h5>Complete the form below to add a new brewery!</h5>
         <br></br>
         <br></br>
+        <Form classname="form"onSubmit={this.handleNewFormSubmit}>
         <Form.Field>
           <label>Brewery Name</label>
           <input placeholder='Brewery Name'className="name" value={this.state.name} onChange={this.handleInputChange}/>
@@ -76,7 +77,8 @@ class NewForm extends React.Component {
         </Form.Field>
         
         <Button type='submit'>Submit</Button>
-    </Form>
+    </Form>       
+  </div>
     )
   }
 }
