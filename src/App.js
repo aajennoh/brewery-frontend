@@ -7,7 +7,7 @@ import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import NewForm from './components/NewForm';
 import { Switch, Route } from 'react-router-dom';
-import { Grid, Button, Icon } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import 'react-svg-map/lib/index.css';
 import { SVGMap, USA } from 'react-svg-map';
 import StatePage from './components/StatePage'
@@ -49,7 +49,7 @@ class App extends React.Component {
 
 
   fetchBreweries = () => {
-    fetch (`http://localhost:3000/breweries`)
+    fetch (`http://localhost:3000/breweries/get_page/${this.state.page}`)
     .then(response => response.json())
     .then(data => {
       // console.log(data[0])
@@ -200,7 +200,20 @@ class App extends React.Component {
                 {...routerProps} 
                 renderAdded={this.renderAdded}
                 />} 
-              />   
+              />
+
+              
+              <Route exact path="/login" render={(routerProps) => {
+                return <LoginForm 
+                  setCurrentUser={this.setCurrentUser} 
+                  {...routerProps}/>
+              }} />
+              
+              <Route exact path="/signup" render={(routerProps) => {
+                return <SignUpForm 
+                  setCurrentUser={this.setCurrentUser}
+                  {...routerProps}/>
+              }} /> 
               
               <Route path="/:state" render={(routerProps) => 
                 <InfiniteScroll 
@@ -242,18 +255,6 @@ class App extends React.Component {
                 
               }
               />
-
-              <Route exact path="/login" render={(routerProps) => {
-                return <LoginForm 
-                  setCurrentUser={this.setCurrentUser} 
-                  {...routerProps}/>
-              }} />
-              
-              <Route exact path="/signup" render={(routerProps) => {
-                return <SignUpForm 
-                  setCurrentUser={this.setCurrentUser}
-                  {...routerProps}/>
-              }} />
   
             </Switch>
           </Grid.Row>
