@@ -10,9 +10,9 @@ class Navbar extends React.Component {
 				<Grid.Column width={16}>
 
 					<Menu className="ui stackable blue inverted menu">
-						<Image src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP%20(2).png?raw=true" />
+
 						<Link className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
-							<Icon name="beer" />
+						<Image size="mini" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BREWERIES%20that%20UNITE%20RESTLESS%20PEOPLE.png?raw=true" />
 						</Link>
 						<Link className="item" to="/map" >
 							<Icon name="map" />

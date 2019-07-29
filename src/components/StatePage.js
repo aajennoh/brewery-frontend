@@ -6,48 +6,41 @@ import { Card, Container } from 'semantic-ui-react';
 
 class StatePage extends React.Component {
 
-  state = {
-    locations: []
-  }
 
   componentDidMount(){
     fetch(`http://localhost:3000/breweries/get_state/${this.props.match.params.state}`)
     .then(response => response.json())
     .then(data => {
-      this.setState({
-        locations: data
-      })
+      this.props.setStateLocation(data)
     })
   }
 
   renderLocations(){
-    return this.state.locations.map(brewery => {
+    return this.props.locations.map(brewery => {
       return (
-        <Container className="pleasework">
-          <Card.Group itemsPerRow={3}>
             <BreweryCard 
             key={brewery.id} 
             handleFavoriteClick={this.props.handleFavoriteClick} 
             currentUser={this.props.currentUser} 
             {...brewery} />
-          </Card.Group>
-        </Container>
       )
     })
   }
 
   renderStateBrewery = () => {
-    if (this.state.locations.length !== 0) {
+    if (this.props.locations.length !== 0) {
       return (
         <div>
-        <h1>{this.props.match.params.state}</h1>
-          <div className="card-container">
-            {this.renderLocations()}
-          </div>
+          <h1>{this.props.match.params.state}</h1>
+          <Container>
+            <Card.Group itemsPerRow={3}>
+              {this.renderLocations()}
+            </Card.Group>
+          </Container>
         </div>
       )
     }else {
-      return <div> NO RESULTS FOUND </div>
+      return <h1> NO BREWERIES FOUND </h1>
     }
   }
   

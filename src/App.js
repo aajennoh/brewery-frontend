@@ -21,8 +21,16 @@ class App extends React.Component {
     searchTerm: '',
     breweries: [],
     loading: false,
-    page: 1
+    page: 1,
+    locations: []
   };
+
+  setStateLocation = (data) => {
+    this.setState({
+      locations: data,
+      page: 1
+    })
+  }
 
 
   setCurrentUser = (user) => {
@@ -41,7 +49,7 @@ class App extends React.Component {
 
 
   fetchBreweries = () => {
-    fetch (`http://localhost:3000/breweries/get_page/${this.state.page}`)
+    fetch (`http://localhost:3000/breweries`)
     .then(response => response.json())
     .then(data => {
       // console.log(data[0])
@@ -59,6 +67,29 @@ class App extends React.Component {
         page: prevState.page + 1
       }
     }), this.fetchBreweries)
+  }
+
+  fetchStateBreweries = (stateName) => {
+    console.log(stateName)
+    fetch (`http://localhost:3000/breweries/get_state${stateName}`)
+    .then(response => response.json())
+    .then(data => {
+      // console.log(data[0])
+      this.setState((prevState) => {
+        return {
+          locations: prevState.locations.concat(data)
+        }
+      })
+    })
+  }
+
+  fetchMoreStateBreweries = (url) => {
+    console.log(url)
+    this.setState((prevState => {
+      return {
+        page: prevState.page + 1
+      }
+    }), this.fetchStateBreweries(url))
   }
 
 
@@ -79,7 +110,7 @@ class App extends React.Component {
       .then(response => response.json())
       .then((data) => {
           this.setState({
-            currentUser: data,
+            currentUser: data
           })
       })
     } else {
@@ -100,7 +131,7 @@ class App extends React.Component {
   }
 
   clickState = (event) => {
-    this.props.history.push(`/state/${event.target.attributes[1].value}`)
+    this.props.history.push(`/${event.target.attributes[1].value}`)
   }
 
   componentDidMount () {
@@ -130,7 +161,6 @@ class App extends React.Component {
     }
     
   }
-
     
   render(){
     if (this.state.loading) {
@@ -165,22 +195,33 @@ class App extends React.Component {
                 path="/map" 
                 render={(routerProps) => <div onClick={this.clickState}><SVGMap map={USA} /></div>} 
               />
-              
-              <Route path="/state/:state" render={(routerProps) => 
-                <StatePage 
-                  {...routerProps} 
-                  currentUser={this.state.currentUser} 
-                  page={this.state.page} 
-                  breweries={this.state.breweries} 
-                  handleFavoriteClick={this.props.handleFavoriteClick} 
-                />
-              } />
-  
+                
               <Route exact path='/newbrewery' render={routerProps => <NewForm 
                 {...routerProps} 
                 renderAdded={this.renderAdded}
                 />} 
               />   
+              
+              <Route path="/:state" render={(routerProps) => 
+                <InfiniteScroll 
+                dataLength={this.state.locations.length}
+                next={() => {
+                  console.log(this.props)
+                  this.fetchMoreStateBreweries(this.props.location.pathname)}}
+                hasMore={true}
+                loader={<div className="loader">Loading ...</div>}
+                >            
+                <StatePage 
+                  {...routerProps} 
+                  currentUser={this.state.currentUser} 
+                  page={this.state.page} 
+                  breweries={this.state.breweries} 
+                  handleFavoriteClick={this.handleFavoriteClick} 
+                  setStateLocation={this.setStateLocation}
+                  locations={this.state.locations}
+                />
+                </InfiniteScroll>
+              } />
               
               <Route exact path='/' render={(routerProps) => 
                 <InfiniteScroll 
