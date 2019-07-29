@@ -8,8 +8,9 @@ class Navbar extends React.Component {
     return (
 			<Grid.Row >
 				<Grid.Column width={16}>
-					<Menu className="ui stackable blue inverted menu" size="huge">
-						<Image size="mini" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP.png?raw=true" />
+
+					<Menu className="ui stackable blue inverted menu">
+						<Image src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP%20(2).png?raw=true" />
 						<Link className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
 							<Icon name="beer" />
 						</Link>
