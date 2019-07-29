@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Menu, Icon } from 'semantic-ui-react'
+import { Grid, Menu, Icon, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class Navbar extends React.Component {
@@ -9,6 +9,7 @@ class Navbar extends React.Component {
 			<Grid.Row >
 				<Grid.Column width={16}>
 					<Menu className="ui stackable blue inverted menu" size="huge">
+						<Image size="mini" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP.png?raw=true" />
 						<Link className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
 							<Icon name="beer" />
 						</Link>
