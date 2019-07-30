@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import BreweryContainer from './containers/BreweryContainer';
+import StateContainer from './components/StateContainer'
 import Favorites from './components/Favorites';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
@@ -10,7 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 import 'react-svg-map/lib/index.css';
 import { SVGMap, USA } from 'react-svg-map';
-import StatePage from './components/StatePage'
+
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
@@ -26,10 +27,12 @@ class App extends React.Component {
   };
 
   setStateLocation = (data) => {
-    this.setState({
-      locations: data,
-      page: 1
-    })
+    this.setState((prevState => {
+      return {
+        locations: data,
+        page: prevState.page + 1
+      }
+    }))
   }
 
 
@@ -71,7 +74,7 @@ class App extends React.Component {
 
   fetchStateBreweries = (stateName) => {
     console.log(stateName)
-    fetch (`http://localhost:3000/breweries/get_state${stateName}`)
+    fetch (`http://localhost:3000/breweries/get_state${stateName}/${this.state.page}`)
     .then(response => response.json())
     .then(data => {
       // console.log(data[0])
@@ -219,12 +222,12 @@ class App extends React.Component {
                 <InfiniteScroll 
                 dataLength={this.state.locations.length}
                 next={() => {
-                  console.log(this.props)
+                  // console.log(this.props)
                   this.fetchMoreStateBreweries(this.props.location.pathname)}}
                 hasMore={true}
                 loader={<div className="loader">Loading ...</div>}
                 >            
-                <StatePage 
+                <StateContainer 
                   {...routerProps} 
                   currentUser={this.state.currentUser} 
                   page={this.state.page} 
@@ -232,6 +235,8 @@ class App extends React.Component {
                   handleFavoriteClick={this.handleFavoriteClick} 
                   setStateLocation={this.setStateLocation}
                   locations={this.state.locations}
+                  handleSearch={this.handleSearch}
+                  searchTerm={this.state.searchTerm}
                 />
                 </InfiniteScroll>
               } />

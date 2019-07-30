@@ -43,7 +43,7 @@ class BreweryCard extends React.Component {
     // console.log(this.props)
     return(
       <Card classname="card"centered >
-        <Image src={this.props.image_url}></Image>
+        <Image className="breweryimage" src={this.props.image_url}></Image>
         <Card.Content>
           <Card.Header>{this.props.name}</Card.Header>
           <Card.Meta>{this.props.phone}</Card.Meta>

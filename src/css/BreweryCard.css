@@ -11,3 +11,8 @@
 .ui.card {
   border-width: 4px;
 }
+
+.breweryimage {
+  width: 400px;
+  height: 250px;
+}

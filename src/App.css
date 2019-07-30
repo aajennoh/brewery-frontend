@@ -37,10 +37,43 @@
 h1 {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
   color: rgb(41, 135, 205);
+  text-align: center;
 }
 
 .svg-map {
-  width: 700px !important;
+  width: 800px !important;
+
+}
+
+.svg-map__location {
+  stroke: black;
+  fill: rgb(41, 135, 205) !important;
+
+}
+
+path:hover, circle:hover {
+  stroke: #002868 !important;
+  stroke-width:2px;
+  stroke-linejoin: round;
+  fill: white !important;
+  cursor: pointer;
+}
+
+#info-box {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  background-color: #ffffff;
+  border: 2px solid #BF0A30;
+  border-radius: 5px;
+  padding: 5px;
+  font-family: arial;
+}
+
+.pleasework {
+  padding-left: 1px;
 }
 
 
