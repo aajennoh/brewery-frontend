@@ -1,0 +1,3 @@
+.ui.inverted.menu .item, .ui.inverted.menu .item>a:not(.ui) {
+  color: black !important;
+}

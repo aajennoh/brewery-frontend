@@ -137,9 +137,9 @@ class App extends React.Component {
     }
   }
 
-  handleSearch = (event) => {
+  handleSearch = (value) => {
     this.setState({
-      searchTerm: event.target.value.toLowerCase()
+      searchTerm: value.toLowerCase()
     })
   }
 
@@ -184,7 +184,7 @@ class App extends React.Component {
 
   geolocation = () => {
     // console.log('hi', API_KEY)
-    fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${INSERT_API_KEY}`, {
+    fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${YOUR_API_KEY}, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -245,6 +245,8 @@ class App extends React.Component {
                 breweriesNearMe={this.state.breweriesNearMe}
                 handleFavoriteClick={this.handleFavoriteClick}
                 currentUser={this.state.currentUser}
+                handleSearch={this.handleSearch} 
+                searchTerm={this.state.searchTerm}
                 />} 
               />
               

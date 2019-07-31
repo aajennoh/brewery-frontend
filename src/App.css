@@ -40,14 +40,14 @@
   height: 30px;
   left: 95%;
   top: 92%;
-  background-color: rgb(224, 225, 226);
+  background-color: rgb(248, 187, 46);
   border-radius: 100%;
   cursor: pointer;
 }
 
 h1 {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
-  color: rgb(41, 135, 205);
+  color: rgb(248, 187, 46);
   text-align: center;
 }
 
@@ -57,8 +57,9 @@ h1 {
 }
 
 .svg-map__location {
-  stroke: black;
-  fill: rgb(41, 135, 205) !important;
+  stroke: rgb(248, 187, 46)  !important;
+  fill: black!important;
+  stroke-width: 1.3 !important;
 
 }
 
@@ -86,6 +87,8 @@ path:hover, circle:hover {
 .pleasework {
   padding-left: 1px;
 }
+
+
 
 
 

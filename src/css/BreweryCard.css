@@ -1,11 +1,11 @@
 .ui.card .meta.website {
   color: blue !important;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .ui.card .meta.website:hover {
   color: red !important;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .ui.card {
@@ -16,3 +16,19 @@
   width: 400px;
   height: 250px;
 }
+
+.ui.card, .ui.cards>.card {
+  box-shadow: none !important;
+  border: 1px solid rgb(248, 187, 46) !important;
+}
+
+.ui.card>.extra, .ui.cards>.card>.extra {
+  border: none !important; 
+}
+
+.ui.card>.content, .ui.cards>.card>.content {
+  border-top: 1px solid rgb(232, 188, 86) !important;
+  border-bottom: 1px solid rgb(232, 188, 86) !important;
+}
+
+

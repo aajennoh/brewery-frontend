@@ -21,6 +21,8 @@ class StateContainer extends React.Component {
 
   componentWillUnmount(){
     this.props.resetStateLocation()
+    this.props.handleSearch('')
+    
   }
 
   // renderLocations = () => {
@@ -68,7 +70,6 @@ class StateContainer extends React.Component {
       <div>
         <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
-        <br></br>
         <br></br>
         <h1>{this.props.match.params.state}</h1>
       <Container className="pleasework">

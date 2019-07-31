@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container, Card, Icon } from 'semantic-ui-react'
 import BreweryCard from './BreweryCard'
+import SearchBar from './SearchBar'
 
-
-class NewForm extends React.Component {
+class BreweryNearMe extends React.Component {
 
   scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -18,22 +18,44 @@ class NewForm extends React.Component {
       />)
   }
 
-render(){
-  return(
-    <div>
-      <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
-      <Container className="pleasework">
-        <Card.Group itemsPerRow={3}>
-          {this.renderBreweryNearMe()}
-        </Card.Group>
-      </Container>
-    </div>
+  filterBreweryNearMe = () => {
+    let matched = this.props.breweriesNearMe.filter(brewery => {
+      return brewery.name.toLowerCase().includes(this.props.searchTerm)
+      }
+    )
+    return matched.map(brewery => 
+      <BreweryCard 
+      key={brewery.id} 
+      handleFavoriteClick={this.props.handleFavoriteClick} 
+      currentUser={this.props.currentUser} 
+      {...brewery} 
+      />
+    )
+  }
 
-  )
-}
+  componentWillUnmount(){
+    this.props.handleSearch('')
+  }
+
+  render(){
+    return(
+      <div>
+        <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
+        <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
+        <br></br>
+        <h1>Breweries Near You</h1>
+        <Container className="pleasework">
+          <Card.Group itemsPerRow={3}>
+            {this.props.searchTerm ? this.filterBreweryNearMe() : this.renderBreweryNearMe()}
+          </Card.Group>
+        </Container>
+      </div>
+
+    )
+  }
 }
 
-export default NewForm
+export default BreweryNearMe
 
 
 

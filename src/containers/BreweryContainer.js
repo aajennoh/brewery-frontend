@@ -40,6 +40,10 @@ class BreweryContainer extends React.Component {
       />)
   }
 
+  componentWillUnmount(){
+    this.props.handleSearch('')
+  }
+
 
   render () {
     return (
