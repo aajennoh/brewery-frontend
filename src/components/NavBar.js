@@ -28,13 +28,13 @@ class Navbar extends React.Component {
 					<Menu className="ui stackable yellow inverted menu">
 
 						<Link className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
-						<Image size="mini" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP%20(3).png?raw=true" />
+						<Image size="mini" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP%20(1).png?raw=true" />
 						</Link>
 						<Link className="item" to="/map" >
 							<Icon name="map" />
 						</Link>
 						{
-							this.props.currentUser 
+							this.props.currentUser
 							
 							?
 

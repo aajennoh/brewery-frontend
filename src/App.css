@@ -26,10 +26,11 @@
 .form {
   border-style: double;
   width: 600px;
+  /* height: 400px; */
   padding: 30px;
   /* padding-bottom: 30px;
   padding-top: 30px; */
-  border-color: rgb(235, 232, 232);
+  border-color: rgb(212, 208, 208);
   border-width: 4px;
   border-radius: 1%;
 }
@@ -88,8 +89,13 @@ path:hover, circle:hover {
   padding-left: 1px;
 }
 
+.ui.button {
+  background: rgb(248, 187, 46) !important;
+}
 
-
+.ui.button:hover {
+  background: rgb(249, 193, 62) !important;
+}
 
 
 @keyframes App-logo-spin {

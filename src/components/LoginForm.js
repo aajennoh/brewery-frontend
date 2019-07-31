@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Image } from 'semantic-ui-react'
+import '../css/LoginForm.css'
 
 
 class LoginForm extends React.Component{
@@ -42,32 +43,37 @@ class LoginForm extends React.Component{
   render(){
     return(
       <div>
-        <h1>Login Form</h1>
-        <Form className="form" onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label>Email</label>
-            <input
-              onChange={this.handleChange}
-              value={this.state.email} 
-              placeholder='Email' 
-              name='email' 
-            />
-          </Form.Field>
+        <div className="login-logo">
+					<Image src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP.png?raw=true" />
+				</div>
+				<div className="login-form">
+          <h1>Login Form</h1>
+          <Form className="form" onSubmit={this.handleSubmit}>
+            <Form.Field>
+              <label>Email</label>
+              <input
+                onChange={this.handleChange}
+                value={this.state.email} 
+                placeholder='Email' 
+                name='email' 
+              />
+            </Form.Field>
 
-          <Form.Field>
-            <label>Password</label>
-            <input 
-              onChange={this.handleChange} 
-              value={this.state.password} 
-              name="password" 
-              type="password" 
-              placeholder='Password' 
-            />
-          </Form.Field>
+            <Form.Field>
+              <label>Password</label>
+              <input 
+                onChange={this.handleChange} 
+                value={this.state.password} 
+                name="password" 
+                type="password" 
+                placeholder='Password' 
+              />
+            </Form.Field>
 
-          <Button type='submit'>Submit</Button>
+            <Button type='submit'>Submit</Button>
 
-        </Form>
+          </Form>
+        </div>
       </div>
 
       )

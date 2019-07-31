@@ -1,0 +1,17 @@
+.signup-logo {
+  position: absolute !important;
+  left: 5%;
+  top: 600%;
+}
+
+.signup-form {
+  position: absolute;
+  top: 220%;
+}
+
+
+
+
+.ui.form input:not([type]), .ui.form input[type=date], .ui.form input[type=datetime-local], .ui.form input[type=email], .ui.form input[type=file], .ui.form input[type=number], .ui.form input[type=password], .ui.form input[type=search], .ui.form input[type=tel], .ui.form input[type=text], .ui.form input[type=time], .ui.form input[type=url] {
+  border: 1px solid rgb(248, 187, 46) !important;
+}

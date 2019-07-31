@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Image } from 'semantic-ui-react'
+import '../css/SignUpForm.css'
 
 class SignupForm extends React.Component {
 	state = {
@@ -47,6 +48,10 @@ class SignupForm extends React.Component {
 	render(){
 		return (
 			<div>
+				<div className="signup-logo">
+					<Image src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP.png?raw=true" />
+				</div>
+				<div className="signup-form">
 					<h1>Signup Form</h1>
 					<Form className="form" onSubmit={this.handleSubmit}>
 						<Form.Field>
@@ -91,9 +96,10 @@ class SignupForm extends React.Component {
 							/>
 						</Form.Field>
 
-						<Button type='submit'>Submit</Button>
+						<Button type='submit'>SUBMIT</Button>
 
 					</Form>
+				</div>
 			</div>
 		)
 	}

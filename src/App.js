@@ -184,7 +184,7 @@ class App extends React.Component {
 
   geolocation = () => {
     // console.log('hi', API_KEY)
-    fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${YOUR_API_KEY}, {
+    fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${YOUR_API_KEY}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
