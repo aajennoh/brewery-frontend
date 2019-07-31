@@ -6,7 +6,7 @@ import StateContainer from './components/StateContainer'
 import Favorites from './components/Favorites';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
-import NewForm from './components/NewForm';
+import BreweryNearMe from './components/BreweryNearMe';
 import { Switch, Route } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 import 'react-svg-map/lib/index.css';
@@ -14,7 +14,6 @@ import { SVGMap, USA } from 'react-svg-map';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Dimmer, Loader } from 'semantic-ui-react';
-import API_KEY from './secrets'
 
 class App extends React.Component {
   // contextRef = createRef()
@@ -24,8 +23,17 @@ class App extends React.Component {
     breweries: [],
     loading: false,
     page: 1,
-    locations: []
+    locations: [],
+    currentLatitude: '',
+    currentLongitude: '',
+    breweriesNearMe: []
   };
+
+  setBreweriesNearMe = (data) => {
+    this.setState({
+      breweriesNearMe: data
+    })
+  }
 
   setStateLocation = (data) => {
     this.setState((prevState => {
@@ -147,6 +155,7 @@ class App extends React.Component {
 
   componentDidMount () {
     this.fetchBreweries();
+    this.geolocation()
     // this.fetchMostLiked();
 
     const token = localStorage.getItem('token')
@@ -172,9 +181,28 @@ class App extends React.Component {
     }
     
   }
+
+  geolocation = () => {
+    // console.log('hi', API_KEY)
+    fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${INSERT_API_KEY}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      this.setState({
+        currentLatitude: data.location.lat,
+        currentLongitude: data.location.lng
+      })
+    })
+  }
     
   render(){
-    console.log(API_KEY)
+    // console.log(this.state)
     if (this.state.loading) {
       return (
         <Dimmer active>
@@ -191,6 +219,9 @@ class App extends React.Component {
             currentUser={this.state.currentUser} 
             logout={this.logout}
             fetchMostLiked={this.fetchMostLiked}
+            currentLatitude={this.state.currentLatitude}
+            currentLongitude={this.state.currentLongitude}
+            setBreweriesNearMe={this.setBreweriesNearMe}
             />
 
 
@@ -204,16 +235,18 @@ class App extends React.Component {
               />
 
               <Route 
-                path="/map" 
+                exact path="/map" 
                 render={(routerProps) => <div onClick={this.clickState}><SVGMap map={USA} /></div>} 
               />
                 
-              <Route exact path='/newbrewery' render={routerProps => <NewForm 
+              <Route exact path='/find_brewery' render={routerProps => <BreweryNearMe 
                 {...routerProps} 
                 renderAdded={this.renderAdded}
+                breweriesNearMe={this.state.breweriesNearMe}
+                handleFavoriteClick={this.handleFavoriteClick}
+                currentUser={this.state.currentUser}
                 />} 
               />
-
               
               <Route exact path="/login" render={(routerProps) => {
                 return <LoginForm 

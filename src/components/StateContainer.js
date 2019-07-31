@@ -28,7 +28,6 @@ class StateContainer extends React.Component {
   // }
 
   renderStateBrewery = () => {
-console.log(this.props.locations)
     if (this.props.locations.length !== 0) {
       return this.props.locations.map(brewery => {
         return (

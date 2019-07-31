@@ -4,6 +4,21 @@ import { Link } from 'react-router-dom'
 
 class Navbar extends React.Component {
 
+	handleClick = () => {
+		fetch('http://localhost:3000/breweries/find_brewery', {
+			method: 'POST',
+			headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+			},
+			body: JSON.stringify({
+				currentLatitude: this.props.currentLatitude,
+				currentLongitude: this.props.currentLongitude
+			})
+		}).then(response => response.json())
+		.then(this.props.setBreweriesNearMe)
+	}
+
   render(){
     return (
 			<Grid.Row >
@@ -23,8 +38,8 @@ class Navbar extends React.Component {
 							?
 
 							<Menu.Menu position="right">
-								<Link className="item" to={`/newbrewery`}>
-									<Icon name="wpforms"/>
+								<Link className="item" onClick={this.handleClick} to={`/find_brewery`} >
+									<Icon name="location arrow"/>
 								</Link>
 								<Link className="item" to={`/users/${this.props.currentUser.id}`}>
 									<Icon name="heart"/>

@@ -34,6 +34,17 @@
   border-radius: 1%;
 }
 
+#to-top {
+  position: fixed;
+  width: 33px;
+  height: 30px;
+  left: 95%;
+  top: 92%;
+  background-color: rgb(224, 225, 226);
+  border-radius: 100%;
+  cursor: pointer;
+}
+
 h1 {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
   color: rgb(41, 135, 205);
