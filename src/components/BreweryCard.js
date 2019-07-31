@@ -42,7 +42,7 @@ class BreweryCard extends React.Component {
   render(){
     // console.log(this.props)
     return(
-      <Card classname="card"centered >
+      <Card className="card" centered >
         <Image className="breweryimage" src={this.props.image_url}></Image>
         <Card.Content>
           <Card.Header>{this.props.name}</Card.Header>

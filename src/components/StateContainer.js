@@ -19,11 +19,16 @@ class StateContainer extends React.Component {
     })
   }
 
+  componentWillUnmount(){
+    this.props.resetStateLocation()
+  }
+
   // renderLocations = () => {
 
   // }
 
   renderStateBrewery = () => {
+console.log(this.props.locations)
     if (this.props.locations.length !== 0) {
       return this.props.locations.map(brewery => {
         return (
@@ -36,6 +41,7 @@ class StateContainer extends React.Component {
       })
 
     }else {
+      
       return <h1> NO BREWERIES FOUND </h1>
     }
   }

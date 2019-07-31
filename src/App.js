@@ -14,6 +14,7 @@ import { SVGMap, USA } from 'react-svg-map';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Dimmer, Loader } from 'semantic-ui-react';
+import API_KEY from './secrets'
 
 class App extends React.Component {
   // contextRef = createRef()
@@ -33,6 +34,13 @@ class App extends React.Component {
         page: prevState.page + 1
       }
     }))
+  }
+
+  resetStateLocation = () => {
+    this.setState({
+      locations: [],
+      page: 1
+    })
   }
 
 
@@ -166,6 +174,7 @@ class App extends React.Component {
   }
     
   render(){
+    console.log(API_KEY)
     if (this.state.loading) {
       return (
         <Dimmer active>
@@ -237,6 +246,7 @@ class App extends React.Component {
                   locations={this.state.locations}
                   handleSearch={this.handleSearch}
                   searchTerm={this.state.searchTerm}
+                  resetStateLocation={this.resetStateLocation}
                 />
                 </InfiniteScroll>
               } />
