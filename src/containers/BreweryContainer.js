@@ -47,19 +47,15 @@ class BreweryContainer extends React.Component {
 
   render () {
     return (
-      <div>
-        <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
-
+      <Container className="pleasework">
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
-        <br></br>
-        <Container className="pleasework">
-          <Card.Group itemsPerRow={3}>
-            {this.props.searchTerm ? this.filterBrewery() : this.renderBrewery()}
-          </Card.Group>
-        </Container>
+        <Card.Group itemsPerRow={3}>
+          {this.props.searchTerm ? this.filterBrewery() : this.renderBrewery()}
+        </Card.Group>
+        <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
+      </Container>
 
-      </div>
     )
   }
 

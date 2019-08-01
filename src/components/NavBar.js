@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid, Menu, Icon, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import '../css/NavBar.css'
+import ReactTooltip from 'react-tooltip'
 
 class Navbar extends React.Component {
 
@@ -39,7 +40,8 @@ class Navbar extends React.Component {
 							?
 
 							<Menu.Menu position="right">
-								<Link className="item" onClick={this.handleClick} to={`/find_brewery`} >
+								<Link data-tip="Breweries Near Me" className="item" onClick={this.handleClick} to={`/find_brewery`} >
+								<ReactTooltip place="top" type="warning" effect="float"/>
 									<Icon name="location arrow"/>
 								</Link>
 								<Link className="item" to={`/users/${this.props.currentUser.id}`}>

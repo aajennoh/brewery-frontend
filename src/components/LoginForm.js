@@ -47,8 +47,9 @@ class LoginForm extends React.Component{
 					<Image src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP.png?raw=true" />
 				</div>
 				<div className="login-form">
-          <h1>Login Form</h1>
+
           <Form className="form" onSubmit={this.handleSubmit}>
+          <h1>Login Form</h1>
             <Form.Field>
               <label>Email</label>
               <input

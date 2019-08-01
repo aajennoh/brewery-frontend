@@ -14,6 +14,7 @@ import { SVGMap, USA } from 'react-svg-map';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Dimmer, Loader } from 'semantic-ui-react';
+import usa from '@svg-maps/usa';
 
 class App extends React.Component {
   // contextRef = createRef()
@@ -200,9 +201,9 @@ class App extends React.Component {
       })
     })
   }
+
     
   render(){
-    // console.log(this.state)
     if (this.state.loading) {
       return (
         <Dimmer active>
@@ -213,7 +214,6 @@ class App extends React.Component {
       // console.log(this.state)
 
       return (
- 
         <Grid>
           <NavBar 
             currentUser={this.state.currentUser} 
@@ -230,7 +230,8 @@ class App extends React.Component {
               <Route exact path="/users/:id" render={routerProps => <Favorites 
                 currentUser={this.state.currentUser} 
                 handleFavoriteClick={this.handleFavoriteClick}
-                favorites={this.state.favorites}
+                handleSearch={this.handleSearch} 
+                searchTerm={this.state.searchTerm}
                 {...routerProps} /> } 
               />
 

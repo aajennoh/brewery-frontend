@@ -39,17 +39,15 @@ class BreweryNearMe extends React.Component {
 
   render(){
     return(
-      <div>
-        <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
+      <Container className="pleasework">
+        <h1>Breweries Near You</h1>
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
-        <h1>Breweries Near You</h1>
-        <Container className="pleasework">
-          <Card.Group itemsPerRow={3}>
-            {this.props.searchTerm ? this.filterBreweryNearMe() : this.renderBreweryNearMe()}
-          </Card.Group>
-        </Container>
-      </div>
+        <Card.Group itemsPerRow={3}>
+          {this.props.searchTerm ? this.filterBreweryNearMe() : this.renderBreweryNearMe()}
+        </Card.Group>
+        <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
+      </Container>
 
     )
   }

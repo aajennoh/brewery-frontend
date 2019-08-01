@@ -24,15 +24,12 @@
 }
 
 .form {
-  border-style: double;
-  width: 600px;
-  /* height: 400px; */
+  width: 500px;
   padding: 30px;
-  /* padding-bottom: 30px;
-  padding-top: 30px; */
-  border-color: rgb(212, 208, 208);
-  border-width: 4px;
-  border-radius: 1%;
+  /* border-color: rgb(212, 208, 208);
+  border-style: dotted;
+  border-width: 20px;
+  border-radius: 1%; */
 }
 
 #to-top {

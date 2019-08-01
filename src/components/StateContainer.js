@@ -68,15 +68,16 @@ class StateContainer extends React.Component {
     // console.log("ROUTER PROPS", this.props)
     return (
       <div>
-        <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
+
+        <Container className="pleasework">
+        <h1>{this.props.match.params.state}</h1>
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
-        <h1>{this.props.match.params.state}</h1>
-      <Container className="pleasework">
-        <Card.Group itemsPerRow={3}>
-          {this.props.searchTerm ? this.filterStateBrewery() : this.renderStateBrewery()}
-        </Card.Group>
-      </Container>
+          <Card.Group itemsPerRow={3}>
+            {this.props.searchTerm ? this.filterStateBrewery() : this.renderStateBrewery()}
+          </Card.Group>
+        </Container>
+        <Icon size="big" id="to-top" onClick={()=>this.scrollToTop()} name='angle double up' />
       </div>
       )
   }

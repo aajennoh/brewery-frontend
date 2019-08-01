@@ -52,8 +52,8 @@ class SignupForm extends React.Component {
 					<Image src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP.png?raw=true" />
 				</div>
 				<div className="signup-form">
-					<h1>Signup Form</h1>
 					<Form className="form" onSubmit={this.handleSubmit}>
+					<h1>Signup Form</h1>
 						<Form.Field>
 							<label>Name</label>
 							<input 
