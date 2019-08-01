@@ -44,7 +44,7 @@ class LoginForm extends React.Component{
     return(
       <div>
         <div className="login-logo">
-					<Image src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP.png?raw=true" />
+					<Image src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BURP.png?raw=true" />
 				</div>
 				<div className="login-form">
 
