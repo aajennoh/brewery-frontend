@@ -1,19 +1,20 @@
 .signup-logo {
-  position: absolute !important;
-  left: 5%;
-  top: 600%;
-  border-color: rgb(212, 208, 208);
-  border-style: dotted;
-  border-width: 20px;
-  border-radius: 1%;
+  position: relative !important;
+  width: 30%;
+  height: 25%;
+  left: 6%;
+  right: 90%;
+  top: 40%;
 }
 
 .signup-form {
-  position: absolute;
-  top: 220%;
-  right: 8%;
-  border-left-style: double;
-  padding-left: 3%;
+  position: relative !important;
+  width: 500px;
+  bottom: 5%;
+  left: 51%;
+  border-left-style: dotted;
+  border-left-width: 10px;
+  padding-left: 17%;
 }
 
 

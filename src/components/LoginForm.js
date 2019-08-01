@@ -43,38 +43,32 @@ class LoginForm extends React.Component{
   render(){
     return(
       <div>
-        <div className="login-logo">
-					<Image src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BURP1.png?raw=true" />
-				</div>
-				<div className="login-form">
-
-          <Form className="form" onSubmit={this.handleSubmit}>
+			  <Image className="login-logo" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BURP2.png?raw=true" />
+        <Form className="login-form" onSubmit={this.handleSubmit}>
           <h1>Login Form</h1>
-            <Form.Field>
-              <label>Email</label>
-              <input
-                onChange={this.handleChange}
-                value={this.state.email} 
-                placeholder='Email' 
-                name='email' 
-              />
-            </Form.Field>
+          <Form.Field>
+            <label>Email</label>
+            <input
+              onChange={this.handleChange}
+              value={this.state.email} 
+              placeholder='Email' 
+              name='email' 
+            />
+          </Form.Field>
 
-            <Form.Field>
-              <label>Password</label>
-              <input 
-                onChange={this.handleChange} 
-                value={this.state.password} 
-                name="password" 
-                type="password" 
-                placeholder='Password' 
-              />
-            </Form.Field>
-
-            <Button type='submit'>Submit</Button>
-
-          </Form>
-        </div>
+          <Form.Field>
+            <label>Password</label>
+            <input 
+              onChange={this.handleChange} 
+              value={this.state.password} 
+              name="password" 
+              type="password" 
+              placeholder='Password' 
+            />
+          </Form.Field>
+          <br></br>
+          <Button type='submit'>Submit</Button>
+        </Form>
       </div>
 
       )

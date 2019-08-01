@@ -1,18 +1,20 @@
 .login-logo {
-  position: absolute !important;
-  width: 25%;
-  height: 25%;
-  left: 10%;
-  top: 700%;
+  position: relative !important;
+  width: 30%;
+  height: 35%;
+  left: 6%;
+  right: 90%;
+  top: 50%;
 }
 
 .login-form {
-  position: absolute;
-  top: 485%;
-  right: 8%;
+  position: relative !important;
+  width: 500px;
+  top: 6%;
+  left: 50%;
   border-left-style: dotted;
   border-left-width: 10px;
-  padding-left: 5%;
+  padding-left: 17%;
 }
 
 .ui.form input:not([type]), .ui.form input[type=date], .ui.form input[type=datetime-local], .ui.form input[type=email], .ui.form input[type=file], .ui.form input[type=number], .ui.form input[type=password], .ui.form input[type=search], .ui.form input[type=tel], .ui.form input[type=text], .ui.form input[type=time], .ui.form input[type=url] {

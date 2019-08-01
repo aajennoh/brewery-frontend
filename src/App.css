@@ -23,15 +23,6 @@
   color: #61dafb;
 }
 
-.form {
-  width: 500px;
-  padding: 30px;
-  /* border-color: rgb(212, 208, 208);
-  border-style: dotted;
-  border-width: 20px;
-  border-radius: 1%; */
-}
-
 #to-top {
   position: fixed;
   width: 33px;
@@ -91,7 +82,7 @@ path:hover, circle:hover {
 }
 
 .ui.button:hover {
-  background: rgb(249, 193, 62) !important;
+  background: rgb(238, 196, 99) !important;
 }
 
 
