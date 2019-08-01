@@ -1,7 +1,9 @@
 .login-logo {
   position: absolute !important;
-  left: 5%;
-  top: 600%;
+  width: 25%;
+  height: 25%;
+  left: 10%;
+  top: 700%;
 }
 
 .login-form {
