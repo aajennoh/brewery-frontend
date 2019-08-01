@@ -48,6 +48,7 @@ class BreweryContainer extends React.Component {
   render () {
     return (
       <Container className="pleasework">
+        <h1>BREWERIES</h1>
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
         <Card.Group itemsPerRow={3}>

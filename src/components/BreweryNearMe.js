@@ -40,7 +40,7 @@ class BreweryNearMe extends React.Component {
   render(){
     return(
       <Container className="pleasework">
-        <h1>Breweries Near You</h1>
+        <h1>BREWERIES NEAR ME</h1>
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
         <Card.Group itemsPerRow={3}>

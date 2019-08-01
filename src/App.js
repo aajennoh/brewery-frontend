@@ -14,7 +14,6 @@ import { SVGMap, USA } from 'react-svg-map';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Dimmer, Loader } from 'semantic-ui-react';
-import usa from '@svg-maps/usa';
 
 class App extends React.Component {
   // contextRef = createRef()
@@ -185,7 +184,7 @@ class App extends React.Component {
 
   geolocation = () => {
     // console.log('hi', API_KEY)
-    fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${YOUR_API_KEY}`, {
+  fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${YOU_API_KEY}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -270,7 +269,7 @@ class App extends React.Component {
                   // console.log(this.props)
                   this.fetchMoreStateBreweries(this.props.location.pathname)}}
                 hasMore={true}
-                loader={<div className="loader">Loading ...</div>}
+                loader={<div>.</div>}
                 >            
                 <StateContainer 
                   {...routerProps} 
@@ -292,7 +291,7 @@ class App extends React.Component {
                   dataLength={this.state.breweries.length}
                   next={this.fetchMoreBreweries}
                   hasMore={true}
-                  loader={<div className="loader">Loading ...</div>}
+                  loader={<div>.</div>}
                   >                  
                     <BreweryContainer 
                     currentUser={this.state.currentUser} 

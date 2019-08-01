@@ -48,7 +48,7 @@ class SignupForm extends React.Component {
 	render(){
 		return (
 			<div>
-				<Image className="signup-logo" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BURP2.png?raw=true" />
+				<Image className="signup-logo" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BURP3.png?raw=true" />
 				<Form className="signup-form" onSubmit={this.handleSubmit}>
 					<h1>Signup Form</h1>
 					<Form.Field>

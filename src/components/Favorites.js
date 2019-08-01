@@ -41,7 +41,7 @@ class Favorites extends React.Component {
     // console.log(this.props)
     return(
       <Container>
-        <h1>Favorites</h1>
+        <h1>FAVORITES</h1>
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
         <Card.Group itemsPerRow={3}>

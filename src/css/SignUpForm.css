@@ -4,13 +4,13 @@
   height: 25%;
   left: 6%;
   right: 90%;
-  top: 40%;
+  top: 36%;
 }
 
 .signup-form {
   position: relative !important;
   width: 500px;
-  bottom: 5%;
+  bottom: 7%;
   left: 51%;
   border-left-style: dotted;
   border-left-width: 10px;

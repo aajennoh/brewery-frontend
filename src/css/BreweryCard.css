@@ -1,12 +1,17 @@
 .ui.card .meta.website {
-  color: blue !important;
+  color: rgb(248, 187, 46) !important;
   cursor: pointer;
 }
 
 .ui.card .meta.website:hover {
-  color: red !important;
+  color: rgb(247, 209, 121) !important;
   cursor: pointer;
 }
+
+/* .ui.card .meta.website:visited {
+  color: black !important;
+  cursor: pointer;
+} */
 
 .ui.card {
   border-width: 4px;
@@ -19,7 +24,8 @@
 
 .ui.card, .ui.cards>.card {
   box-shadow: none !important;
-  border: 1px solid rgb(248, 187, 46) !important;
+  /* border: 1px solid rgb(248, 187, 46) !important; */
+  border: 1px solid black !important;
 }
 
 .ui.card>.extra, .ui.cards>.card>.extra {
@@ -27,8 +33,11 @@
 }
 
 .ui.card>.content, .ui.cards>.card>.content {
-  border-top: 1px solid rgb(232, 188, 86) !important;
-  border-bottom: 1px solid rgb(232, 188, 86) !important;
+  /* border-top: 1px solid rgb(232, 188, 86) !important;
+  border-bottom: 1px solid rgb(232, 188, 86) !important; */
+  border-top: 1px solid black !important;
+  border-bottom: 1px solid black !important;
+
 }
 
 

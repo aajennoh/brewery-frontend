@@ -70,7 +70,7 @@ class StateContainer extends React.Component {
       <div>
 
         <Container className="pleasework">
-        <h1>{this.props.match.params.state}</h1>
+        <h1>{this.props.match.params.state.toUpperCase()}</h1>
         <SearchBar handleSearch={this.props.handleSearch} showNoResults={false} />
         <br></br>
           <Card.Group itemsPerRow={3}>

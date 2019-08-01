@@ -43,7 +43,7 @@ class LoginForm extends React.Component{
   render(){
     return(
       <div>
-			  <Image className="login-logo" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BURP2.png?raw=true" />
+			  <Image className="login-logo" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BURP3.png?raw=true" />
         <Form className="login-form" onSubmit={this.handleSubmit}>
           <h1>Login Form</h1>
           <Form.Field>

@@ -28,10 +28,12 @@ class Navbar extends React.Component {
 
 					<Menu className="ui stackable yellow inverted menu">
 
-						<Link className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
-						<Image size="mini" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP%20(1).png?raw=true" />
+						<Link data-tip="View All Breweries" className="item" to="/" onClick={() => this.props.fetchMostLiked()}>
+							<ReactTooltip place="top" type="warning" effect="float"/>
+							<Image size="mini" src="https://github.com/aajennoh/brewery-frontend/blob/master/public/BU%20RP%20(1).png?raw=true" />
 						</Link>
-						<Link className="item" to="/map" >
+						<Link data-tip="Find By State" className="item" to="/map" >
+							<ReactTooltip place="top" type="warning" effect="float"/>
 							<Icon name="map" />
 						</Link>
 						{
@@ -41,13 +43,15 @@ class Navbar extends React.Component {
 
 							<Menu.Menu position="right">
 								<Link data-tip="Breweries Near Me" className="item" onClick={this.handleClick} to={`/find_brewery`} >
-								<ReactTooltip place="top" type="warning" effect="float"/>
+									<ReactTooltip place="top" type="warning" effect="float"/>
 									<Icon name="location arrow"/>
 								</Link>
-								<Link className="item" to={`/users/${this.props.currentUser.id}`}>
+								<Link data-tip="Favorites" className="item" to={`/users/${this.props.currentUser.id}`}>
+									<ReactTooltip place="top" type="warning" effect="float"/>
 									<Icon name="heart"/>
 								</Link>
-								<Menu.Item onClick={this.props.logout}>
+								<Menu.Item data-tip="Logout" onClick={this.props.logout}>
+									<ReactTooltip place="top" type="warning" effect="float"/>
 									<Icon name="log out"/>
 								</Menu.Item>
 							</Menu.Menu>
@@ -55,10 +59,12 @@ class Navbar extends React.Component {
 							:
 
 							<Menu.Menu position="right">
-								<Link className="item" to="/login">
+								<Link data-tip="Log In" className="item" to="/login">
+									<ReactTooltip place="top" type="warning" effect="float"/>
 									<Icon name="sign-in"/>
 								</Link>
-								<Link className="item" to="/signup">
+								<Link data-tip="Sign-Up" className="item" to="/signup">
+									<ReactTooltip place="top" type="warning" effect="float"/>
 									<Icon name="signup"/>
 								</Link>
 							</Menu.Menu>
